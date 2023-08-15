@@ -1,0 +1,40 @@
+@mixin flex ($arg1,$arg2,$arg3,$arg4,$arg5:0) {
+    display: flex;
+    flex-flow: $arg1 $arg2;
+    justify-content: $arg3;
+    align-items: $arg4;
+    gap:$arg5;
+}
+
+@mixin grid ($valor,$valor1) {
+    grid-template-columns: repeat($valor/1fr);
+    gap: $valor1;
+}
+
+@mixin rs ($font,$line:1) {
+    font-size: calc(2vw + $font);
+    line-height: $line;
+}
+
+@mixin rs-2 ($font,$line:1) {
+    font-size: calc(1vw + $font);
+    line-height: $line;
+}
+
+@mixin tablet ($medida1:800px) {
+    @media screen and (min-width:$medida1) {
+        @content;
+    }
+}
+
+@mixin desktop ($medida:1200px) {
+    @media screen and (min-width:$medida) {
+        @content;
+    }
+}
+
+@mixin desktop-max ($medida2:1650px) {
+    @media screen and (min-width:$medida2){
+        @content;
+    }
+}

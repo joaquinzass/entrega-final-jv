@@ -1,0 +1,664 @@
+@charset "UTF-8";
+/*
+
+Con este reset vamos a resolver:
+    👉 Unificar el uso de Custom Properties
+    👉 Problemas de box-model más generales
+    👉 Problemas con imagenes, vídeos e iconos svg
+    👉 Problemas con tipografías y etiquetas input en formularios
+    👉 Unificar la tipografía de todas las etiquetas de una web
+*/
+/* Aquí definimos las Custom properties */
+:root {
+  --negro: #393939;
+  /* Tipografía */
+  --tipo-principal: Helvetica, Arial, sans-serif;
+  --tipo-secundaria: Verdana;
+}
+
+/* Las adaptamos al modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --negro: #000000;
+  }
+}
+/* Opcional */
+/* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
+/* Opcional */
+/* Desactivamos los animations en el caso de que el usuario haya configurado el modo sin animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* Reseteamos los margin y paddings de todas las etiquetas */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+/* Evitamos problemas con las imagenes */
+img, picture, video, iframe, figure {
+  display: block;
+  /* opcional */
+  object-fit: cover;
+  /* opcional */
+  object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ... excepto los que se encuentran en párrafos */
+p a {
+  display: inline;
+}
+
+/* Quitamos los puntos de los <li> */
+li {
+  list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::selection {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: block;
+  /* opcional */
+  appearance: none;
+}
+
+/* Reseteamos las tablas */
+table, tr, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+/* (Probándolo, no usar en producción) En el caso de añadir una  */
+/* p svg{
+    display: inline;
+    width: initial;
+} */
+/* Configuramos la tipografía para toda la web */
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: var(--tipo-principal);
+  color: var(--negro);
+  /* opcional */
+  line-height: 1.4em;
+  /* opcional */
+  hyphens: auto;
+  /* opcional */
+  font-smooth: always;
+  /* opcional */
+  -webkit-font-smoothing: antialiased;
+  /* opcional */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-smooth: always;
+  font-smooth: 2em;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #242424;
+  padding: 0 2.5rem;
+}
+
+.header {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.header .sub-logo {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.header .sub-logo span {
+  border: 1px solid white;
+  width: 0px;
+  height: 20px;
+}
+.header .sub-logo h2 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
+  margin: 0 0.6rem 0 0.7rem;
+}
+
+.main {
+  width: 100%;
+  height: 85vh;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0;
+}
+.main .title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.main .title h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 8px;
+  margin: 0 0 0 5rem;
+  color: #494949;
+  text-transform: uppercase;
+  position: relative;
+}
+.main .title h1::after {
+  content: "";
+  background-color: #494949;
+  width: 90%;
+  height: 1.4px;
+  position: absolute;
+  bottom: -25;
+  left: 7;
+}
+.main .title img {
+  margin: 0 1.4rem;
+}
+.main .input {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.main .input .sub-input {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.main .input .sub-input label {
+  text-transform: uppercase;
+  color: rgb(170, 170, 170);
+  margin: 0 0.5rem;
+}
+.main .input .sub-input input {
+  background-color: #494949;
+  color: rgb(173, 173, 173);
+  padding: 0.1rem 0.5rem;
+}
+.main .input button {
+  padding: 0 1.5rem 0.1rem;
+  background-color: #494949;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: rgb(170, 170, 170);
+  margin: 2.5rem;
+}
+.main .alert {
+  max-width: 30vw;
+}
+.main .alert h3 {
+  text-align: center;
+  color: #494949;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.footer {
+  width: 100%;
+}
+.footer h4 {
+  text-align: right;
+  color: #494949;
+  font-weight: 600;
+  font-size: 1.05rem;
+  position: relative;
+}
+.footer h4::after {
+  content: "";
+  width: 95%;
+  height: 2px;
+  background-color: #494949;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 0 0 1rem;
+}
+
+/* subMain.html */
+.sub-body {
+  padding: 0;
+}
+
+.sub-header {
+  width: 100%;
+  background-color: #1D1D1D;
+  padding: 0.8rem 1rem 0.8rem 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.sub-header .nav .ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.sub-header .nav .ul .li {
+  margin: 0 0.5rem;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+.sub-header .nav .ul .li:hover {
+  color: #494949;
+}
+.sub-header .nav .ul .li::after {
+  content: "";
+  width: 1px;
+  height: 20px;
+  border: 1px solid white;
+  margin: 0 0.5rem;
+}
+.sub-header .nav .ul .li::before {
+  content: "";
+  width: 1px;
+  height: 20px;
+  border: 1px solid white;
+  margin: 0 0.5rem;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+    transform: translateX(-800px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes opacity1 {
+  0% {
+    opacity: 0;
+    transform: translateX(800px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.sub-main {
+  width: 100%;
+  height: 90vh;
+  padding: 2rem 4rem;
+  animation: opacity 3s ease;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.sub-main .one-section {
+  width: 50vw;
+  height: 95%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+.sub-main .one-section p {
+  color: #494949;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.493);
+  width: 35rem;
+}
+.sub-main .one-section .title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  width: fit-content;
+  margin: 0.8rem 0;
+}
+.sub-main .one-section .title h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 8px;
+  color: #494949;
+  text-transform: uppercase;
+}
+.sub-main .one-section .title::after {
+  content: "";
+  background-color: #494949;
+  width: 85%;
+  height: 1.4px;
+  position: absolute;
+  bottom: -5;
+  left: 0;
+}
+.sub-main .one-section .button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 1rem 0;
+}
+.sub-main .one-section .button button {
+  background-color: #313131;
+  margin: 0 1.5rem 0 0;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgb(160, 160, 160);
+  border-radius: 5px;
+}
+
+.two-section {
+  width: 50vw;
+  height: 95%;
+  padding: 0 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.two-section .one-box {
+  width: 15vw;
+  grid-area: 1/1/2/2;
+}
+.two-section .one-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.192);
+}
+.two-section .two-box {
+  width: 15vw;
+  grid-area: 2/2/3/3;
+}
+.two-section .two-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.192);
+}
+
+/*porstsub.html*/
+.body-sub {
+  padding: 0;
+  width: 100%;
+}
+
+.header-sub {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.header-sub img:hover {
+  transform: rotateZ(100deg);
+}
+.header-sub h2 {
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+}
+.header-sub span {
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.main-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main-sub h1 {
+  text-transform: uppercase;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem;
+  color: white;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+.main-sub #history-container {
+  min-width: 30rem;
+  background-color: white;
+  margin: 5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.main-sub #history-container h4 {
+  font-size: calc(1vw + 0.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.5rem;
+}
+.main-sub #history-container .box-result {
+  text-align: center;
+  width: 90%;
+  margin: 0.5rem;
+}
+.main-sub #history-container .box-result span {
+  text-align: center;
+  padding: 0.2rem;
+}
+.main-sub .card-contaniner-sub {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  margin: 1rem;
+  padding: 3rem;
+  border-radius: 5px;
+  width: 90%;
+  overflow: hidden;
+}
+.main-sub .card-contaniner-sub span {
+  width: 1px;
+  height: 75vh;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+}
+.main-sub .card-contaniner-sub .one-sect {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background-color: rgba(44, 44, 44, 0.473);
+  padding: 1rem 2rem;
+  animation: opacity 0.6s ease;
+}
+.main-sub .card-contaniner-sub .two-sect {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  animation: opacity1 0.6s ease;
+}
+.main-sub .card-contaniner-sub .two-sect h4 {
+  color: white;
+  opacity: 0.6;
+  margin: 1.5rem 0 1rem;
+  font-size: 1.1rem;
+}
+.main-sub .card-contaniner-sub .two-sect p {
+  max-width: 25vw;
+  text-align: center;
+}
+.main-sub .card-contaniner-sub .two-sect img {
+  width: 20vw;
+  margin: 3rem;
+}
+.main-sub .card-contaniner-sub h3 {
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+.main-sub .card-contaniner-sub p {
+  color: white;
+  opacity: 0.5;
+  margin: 1.5rem 0 0;
+}
+.main-sub .card-contaniner-sub button {
+  padding: 0.2rem 2.5rem 0.3rem;
+  margin: 1.5rem 0 0;
+  border-radius: 3px;
+  border: 1px solid #353535;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.493);
+  opacity: 0.8;
+  position: relative;
+}
+.main-sub .card-contaniner-sub .btnDelete {
+  margin: 0.5rem;
+}
+.main-sub .card-contaniner-sub input {
+  outline: none;
+  border: none;
+  padding: 0.2rem;
+  background-color: rgba(128, 128, 128, 0.158);
+  color: white;
+}
+.main-sub .card-contaniner-sub img {
+  margin: 0 0 1rem;
+}
+
+.acheunoclase h3 {
+  text-transform: uppercase;
+  color: white;
+  opacity: 0.8;
+  letter-spacing: 1px;
+  margin: 2rem 0 1rem;
+}
+
+.nav-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 2rem 2rem 1rem;
+  background-color: rgb(31, 31, 31);
+}
+.nav-sub h1 {
+  color: white;
+  opacity: 0.8;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.nav-sub .containerFigure-sub {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-sub .containerFigure-sub img {
+  margin: 2rem;
+  width: 6rem;
+}
+
+/*# sourceMappingURL=app.css.map */

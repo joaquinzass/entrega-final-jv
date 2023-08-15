@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1, "nombre": "triangulo", "categoria": "geometrica", "imgUrl": "../images/figuras/foto1.png" 
+    },
+    {
+        "id": 2, "nombre": "cuadrado", "categoria": "geometrica", "imgUrl": "../images/figuras/foto2.png" 
+    },
+    {
+        "id": 3, "nombre": "circulo", "categoria": "geometrica", "imgUrl": "../images/figuras/foto3.png" 
+    },
+    {
+        "id": 4, "nombre": "rectangulo", "categoria": "geometrica", "imgUrl": "../images/figuras/foto4.png"
+    }
+]
